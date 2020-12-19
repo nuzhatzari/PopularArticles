@@ -11,9 +11,9 @@ Please follow the below instruction to run the app on simulator
 
 Please follow the below instruction to run the test
 There are three ways to run the tests:
-	1	Product ▸ Test or Command-U. Both of these run all test classes.
-	2	Click the arrow button in the Test navigator.
-	3	Click the diamond button in the gutter.
+1. Product ▸ Test or Command-U. Both of these run all test classes.
+2. Click the arrow button in the Test navigator.
+3. Click the diamond button in the gutter.
 
 Please follow the below instruction to generate the Coverage Reports
 1. Run all tests (Command-U).
