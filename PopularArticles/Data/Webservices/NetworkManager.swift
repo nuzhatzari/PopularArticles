@@ -8,10 +8,30 @@
 
 import UIKit
 
-public typealias JSONTaskCompletion = (_ data: [String: Any]?, _ error: NSError?) -> Void
 var APIKEY = "015LPo0E1fX4CLcGGM0txNkexg9HZ4Jy"
 
-public protocol NetworkManager {
+//APPError enum which shows all possible errors
+enum APPError: Error {
+    case networkError(Error)
+    case dataNotFound
+    case jsonParsingError(Error)
+    case invalidStatusCode(Int)
+}
+
+//Result enum to show success or failure
+enum APIResult<T> {
+    case success(T)
+    case failure(APPError)
+}
+
+class Response<T: Decodable>: Decodable {
+    let status: String
+    let copyright: String
+    let num_results: Int
+    let results: T
+}
+
+protocol NetworkManager {
 
     var baseUrl: String { get set }
     var route: String { get set }
@@ -19,12 +39,11 @@ public protocol NetworkManager {
     var body: [String: Any]? { get set }
     var headers: [String: String] { get set }
     
-    func JSONTaskWithRequest(completion: @escaping JSONTaskCompletion) -> URLSessionDataTask
-    func fetchData<T>(parse: @escaping (Any) -> T?, completion: @escaping (Result<T, Error>) -> Void)
+    func fetchData<T: Decodable>(objectType: T.Type, completion: @escaping (APIResult<T>) -> Void)
 
 }
 
-public extension NetworkManager {
+extension NetworkManager {
     
     var baseUrl: String {
         get { return Bundle.main.apiBaseURL } set {}
@@ -41,9 +60,8 @@ public extension NetworkManager {
     var body: [String : Any]? {
         get { return [:] } set {}
     }
-    
-    
-    func JSONTaskWithRequest(completion: @escaping JSONTaskCompletion) -> URLSessionDataTask {
+
+    func fetchData<T: Decodable>(objectType: T.Type, completion: @escaping (APIResult<T>) -> Void) {
         
         let url = URL(string: "\(baseUrl.replacingOccurrences(of: "ROUTE", with: route).replacingOccurrences(of: "APIKEY", with: APIKEY))")!
         let urlRequest = NSMutableURLRequest(url: url)
@@ -77,7 +95,7 @@ public extension NetworkManager {
                     NSLocalizedDescriptionKey: NSLocalizedString("Error with the response: unexpected status code", comment: "")
                 ]
                 let error = NSError(domain: "NetworkingErrorDomain", code: 1001, userInfo: userInfo)
-                completion(nil, error)
+                completion(.failure(APPError.networkError(error)))
                 return
             }
 
@@ -87,50 +105,35 @@ public extension NetworkManager {
                 ])
                 
                 if let error = error {
-                    completion(nil, error as NSError?)
+                    completion(.failure(APPError.networkError(error)))
                 } else {
-                    completion(nil, defaultError)
+                    completion(.failure(APPError.networkError(defaultError)))
                 }
 
             } else {
-                do {
+                /*do {
                     let jsonData = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
                     completion(jsonData, nil)
                 } catch let error as NSError {
                     completion(nil, error)
-                }
-            }
-        }
-        return task
-    }
-
-    func fetchData<T>(parse: @escaping (Any) -> T?, completion: @escaping (Result<T, Error>) -> Void) {
-        
-        let task = JSONTaskWithRequest { json, error in
-            DispatchQueue.main.async {
-            guard let json = json else {
-                if let error = error {
-                    completion(.failure(error))
-                } else {
-                    let error = "Something went wrong."
-                    completion(.failure(error as! Error))
-                }
-                return
-            }
-                if let status = json["status"] as? String, status.caseInsensitiveCompare("OK") == ComparisonResult.orderedSame {
-                    if let results = json["results"], let value = parse(results) {
-                        completion(.success(value))
-                    } else {
-                        let error = "Something went wrong."
-                        completion(.failure(error as! Error))
+                }*/
+                
+                do {
+                    //create decodable object from data
+                    let json = try JSONDecoder().decode(Response<T>.self, from: data!)
+                    if json.status.caseInsensitiveCompare("OK") == ComparisonResult.orderedSame {
+                        completion(.success(json.results))
+                    }else {
+                        let error = "Something went wrong, please try again later."
+                        completion(.failure(APPError.jsonParsingError(error as! Error)))
                     }
-                }else {
-                    let error = "Something went wrong."
-                    completion(.failure(error as! Error))
-                }
+                } catch let error as NSError {
+                    completion(.failure(APPError.networkError(error)))
+                 }
+                 
+            }
         }
-        }
-
+        
         task.resume()
     }
     

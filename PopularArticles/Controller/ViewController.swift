@@ -93,7 +93,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     //MARK: - Loader
     func showLoading() {
-        viewLoader?.isHidden = false
+        viewLoader.isHidden = false
         self.view.bringSubviewToFront(viewLoader)
         activityIndicator.startAnimating()
     }
@@ -125,7 +125,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 strongSelf.articles = fetchArticles
                 strongSelf.articleTableView.reloadData()
             } else {
-                strongSelf.showAlert(with: error?.localizedDescription ?? "Something went wrong, please try again later.")
+                switch error {
+                case .networkError(let error),
+                     .jsonParsingError(let error):
+                    strongSelf.showAlert(with: error.localizedDescription)
+                default:
+                    strongSelf.showAlert(with: "Something went wrong, please try again later.")
+                }
             }
         
         }

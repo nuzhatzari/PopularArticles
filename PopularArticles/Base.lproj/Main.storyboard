@@ -58,6 +58,9 @@
                                         <state key="normal" image="white_search">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="search_button"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onBtnSearchClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6hG-dm-xbO"/>
                                         </connections>
@@ -214,6 +217,9 @@
                                         <state key="normal" title="Back" image="lessthan" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="detail_back"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onBtnBackClicked" destination="5OJ-XT-gsn" eventType="touchUpInside" id="pGH-pp-BB6"/>
                                         </connections>
@@ -233,6 +239,9 @@
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="webView"/>
+                                </userDefinedRuntimeAttributes>
                             </wkWebView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="hJ3-gd-Nd3">
                                 <rect key="frame" x="188.5" y="457" width="37" height="37"/>
@@ -300,6 +309,9 @@
                                         <state key="normal" title="CLOSE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="close_search_btn"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onBtnCloseClicked" destination="0bk-cO-6X2" eventType="touchUpInside" id="7f2-mQ-HNM"/>
                                         </connections>
@@ -363,6 +375,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="option_button"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onBtnOptionClicked:" destination="E9I-vd-StW" eventType="touchUpInside" id="eMq-BX-afg"/>
@@ -406,6 +419,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="search_done_btn"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onBtnSearchClicked" destination="0bk-cO-6X2" eventType="touchUpInside" id="5Kz-lS-nsA"/>
@@ -416,6 +430,9 @@
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGd-4d-tfa">
                                         <rect key="frame" x="0.0" y="44" width="414" height="216"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="option_picker"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="dataSource" destination="0bk-cO-6X2" id="nhB-ci-Ip6"/>
                                             <outlet property="delegate" destination="0bk-cO-6X2" id="2kc-73-l7D"/>
@@ -425,6 +442,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                         <items>
                                             <barButtonItem title="Done" id="2M6-XS-6fC">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="option_done"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onBtnDoneClicked" destination="0bk-cO-6X2" id="gpp-hn-qr8"/>
                                                 </connections>

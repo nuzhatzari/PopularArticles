@@ -12,7 +12,7 @@ class ViewModel: NSObject {
 
     var articles : [Article]?
     
-    var notifyFetchArticleCompletionToController : ((_ articles: [Article]?, _ errorMsg: Error?) -> ()) = {_,_ in }
+    var notifyFetchArticleCompletionToController : ((_ articles: [Article]?, _ errorMsg: APPError?) -> ()) = {_,_ in }
     
     override init() {
         super.init()
@@ -21,7 +21,7 @@ class ViewModel: NSObject {
     func fetchArticleData() {
         let service = FetchArticlesDataService()
         
-        service.fetchArticles {[weak self] result in
+        service.fetchArticles {[weak self] (result: APIResult<[Article]>) in
             guard let strongSelf = self else {
                 return
             }

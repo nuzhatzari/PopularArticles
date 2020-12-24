@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Article: NSObject {
+class Article: NSObject, Decodable {
 
     @objc var id: Int = 0
     @objc var url: String = ""

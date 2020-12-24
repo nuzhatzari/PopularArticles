@@ -59,6 +59,16 @@
                ReferencedContainer = "container:PopularArticles.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "18D1856925948F1F00D63708"
+               BuildableName = "PopularArticlesUITests.xctest"
+               BlueprintName = "PopularArticlesUITests"
+               ReferencedContainer = "container:PopularArticles.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

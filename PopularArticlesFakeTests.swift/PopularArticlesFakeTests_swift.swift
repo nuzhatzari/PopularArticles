@@ -11,21 +11,52 @@ import XCTest
 
 class PopularArticlesFakeTests_swift: XCTestCase {
 
-    var sut: FetchArticlesDataService!
+    var sut: SearchViewModel!
     var response: [String: AnyObject]!
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        sut = FetchArticlesDataService()
-
-        let testBundle = Bundle(for: type(of: self))
-        let path = testBundle.path(forResource: "data", ofType: "json")
-        if let data = try? Data(contentsOf: URL(fileURLWithPath: path!), options: .alwaysMapped),
-            let jsonResponse = try JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions(rawValue:0)) as? [String: AnyObject] {
-            response = jsonResponse
-        }
         
+        //Article1
+        var articles = [Article]()
+        let article1 = Article()
+        article1.id = 100000007482952
+        article1.url = "https://www.nytimes.com/2020/12/11/arts/music/fka-twigs-shia-labeouf-abuse.html"
+        article1.published_date = "2020-12-11"
+        article1.section = "Arts"
+        article1.byline = "By Katie Benner and Melena Ryzik"
+        article1.title = "FKA twigs Sues Shia LaBeouf, Citing ‘Relentless’ Abusive Relationship"
+        article1.adx_keywords = "Suits and Litigation (Civil);Domestic Violence;Sex Crimes;#MeToo Movement;internal-storyline-no;FKA twigs;LaBeouf, Shia"
+        article1.subsection = "Music"
+        articles.append(article1)
+        
+        //Article2
+        let article2 = Article()
+        article2.id = 100000007497420
+        article2.url = "https://www.nytimes.com/2020/12/13/us/politics/trump-allies-election-overturn-congress-pence.html"
+        article2.published_date = "2020-12-13"
+        article2.section = "U.S."
+        article2.byline = "By Nicholas Fandos and Michael S. Schmidt"
+        article2.title = "Trump Allies Eye Long-Shot Election Reversal in Congress, Testing Pence"
+        article2.adx_keywords = "Presidential Election of 2020;Biden, Joseph R Jr;Trump, Donald J;Pence, Mike;Democratic Party;Republican Party;House of Representatives"
+        article2.subsection = "Politics"
+        articles.append(article2)
+        
+        
+        //Article3
+        let article3 = Article()
+        article3.id = 100000007497882
+        article3.url = "https://www.nytimes.com/2020/12/11/us/politics/supreme-court-election-texas.html"
+        article3.published_date = "2020-12-11"
+        article3.section = "U.S."
+        article3.byline = "By Adam Liptak"
+        article3.title = "Supreme Court Rejects Texas Suit Seeking to Subvert Election"
+        article3.adx_keywords = "Presidential Election of 2020;States (US);Attorneys General;Suits and Litigation (Civil);Voter Fraud (Election Fraud);Presidential Transition (US);Electoral College;Decisions and Verdicts;United States Politics and Government;Federal-State Relations (US);Biden, Joseph R Jr;Trump, Donald J;Paxton, Ken;Supreme Court (US);Texas"
+        article3.subsection = "Politics"
+        articles.append(article3)
+        
+        sut = SearchViewModel(articles: articles)
     }
 
     override func tearDownWithError() throws {
@@ -34,16 +65,15 @@ class PopularArticlesFakeTests_swift: XCTestCase {
         super.tearDown()
     }
     
-    func test_ParseData() {
+    func test_OptionData() {
         //given
-        let num_results = response["num_results"] as! Int
-        let results = response["results"] as! [[String: AnyObject]]
+        let num_results = 2
         
         //when
-        let articles = sut.parseData(results)
+        let options = sut.fetchOptions(for: "section")
         
         //then
-        XCTAssertEqual(articles?.count, num_results, "Didn't parse all items from fake response")
+        XCTAssertEqual(options.count, num_results, "Didn't fetch all options from fake articles.")
     }
     
 
