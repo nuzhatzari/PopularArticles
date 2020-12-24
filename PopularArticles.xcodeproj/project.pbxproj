@@ -10,7 +10,6 @@
 		1814A9BB2508CC8B000DBFD8 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814A9BA2508CC8B000DBFD8 /* UIView.swift */; };
 		1814A9BE2508D20F000DBFD8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814A9BD2508D20F000DBFD8 /* SearchViewController.swift */; };
 		1814A9C12508D31C000DBFD8 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814A9C02508D31C000DBFD8 /* SearchTableViewCell.swift */; };
-		1814A9C325092F1F000DBFD8 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1814A9C225092F1F000DBFD8 /* ReadMe.rtf */; };
 		182A9CFE258B2C9300D5CC8D /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A9CFD258B2C9300D5CC8D /* ArticleTableViewCell.swift */; };
 		182A9D00258B2EF000D5CC8D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A9CFF258B2EF000D5CC8D /* Article.swift */; };
 		182A9D02258B384B00D5CC8D /* FetchArticlesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A9D01258B384B00D5CC8D /* FetchArticlesData.swift */; };
@@ -68,7 +67,6 @@
 		1814A9BA2508CC8B000DBFD8 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		1814A9BD2508D20F000DBFD8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1814A9C02508D31C000DBFD8 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		1814A9C225092F1F000DBFD8 /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
 		182A9CFD258B2C9300D5CC8D /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		182A9CFF258B2EF000D5CC8D /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		182A9D01258B384B00D5CC8D /* FetchArticlesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchArticlesData.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 		18F33AD52507602600190B7E = {
 			isa = PBXGroup;
 			children = (
-				1814A9C225092F1F000DBFD8 /* ReadMe.rtf */,
 				18F33AE02507602600190B7E /* PopularArticles */,
 				182A9D0D258C956D00D5CC8D /* PopularArticlesTests */,
 				182A9D1B258CD32F00D5CC8D /* PopularArticlesFakeTests.swift */,
@@ -491,7 +488,6 @@
 			files = (
 				18F33AEE2507602700190B7E /* LaunchScreen.storyboard in Resources */,
 				18F33AEB2507602700190B7E /* Assets.xcassets in Resources */,
-				1814A9C325092F1F000DBFD8 /* ReadMe.rtf in Resources */,
 				18F33AE92507602600190B7E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
